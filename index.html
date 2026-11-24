@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SkillSwap — Trade skills, learn together</title>
+<meta name="description" content="SkillSwap: a community skill-exchange board for students. Post a skill you can teach and one you want to learn, find people to swap with. No accounts, no server — your data stays in your browser.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <h1>🔄 SkillSwap</h1>
+    <p class="tagline">Teach what you know. Learn what you don't. <span lang="hi">— सीखो, सिखाओ, आगे बढ़ो।</span></p>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="intro">
+    <p>SkillSwap is a free skill-exchange board for students. Post <strong>one skill you can teach</strong>
+    and <strong>one skill you want to learn</strong>. When someone teaches what you want to learn
+    <em>and</em> wants to learn what you teach, that's a <strong>mutual match</strong> — a fair swap.</p>
+    <p class="privacy-note">🔒 No accounts, no server, no tracking. Your posts live only in <em>your</em> browser
+    (localStorage). The board ships with clearly labelled <strong>sample posts</strong> so you can see how
+    it works — delete them any time with one click.</p>
+  </section>
+
+  <section class="panel" aria-labelledby="post-heading">
+    <h2 id="post-heading">Post your swap</h2>
+    <form id="post-form" novalidate>
+      <div class="grid">
+        <label>Your name / nickname
+          <input id="f-name" type="text" maxlength="40" placeholder="e.g. Raja" required>
+        </label>
+        <label>Category
+          <select id="f-category"></select>
+        </label>
+        <label>💡 I can teach
+          <input id="f-teach" type="text" maxlength="80" placeholder="e.g. Basic Excel" required>
+        </label>
+        <label>🎯 I want to learn
+          <input id="f-learn" type="text" maxlength="80" placeholder="e.g. Spoken English" required>
+        </label>
+        <label>Mode
+          <select id="f-mode"></select>
+        </label>
+        <label>How to reach you (optional)
+          <input id="f-contact" type="text" maxlength="80" placeholder="e.g. college WhatsApp group, email">
+        </label>
+      </div>
+      <label class="full">A short note (optional, max 200 characters)
+        <textarea id="f-note" rows="2" maxlength="200" placeholder="e.g. Free after 5 pm on weekdays."></textarea>
+      </label>
+      <p id="form-errors" class="errors" role="alert" hidden></p>
+      <button type="submit" class="btn primary">Post my swap →</button>
+    </form>
+  </section>
+
+  <section class="panel" aria-labelledby="find-heading">
+    <h2 id="find-heading">Find your swap partner</h2>
+    <div class="filters">
+      <label>Search
+        <input id="q" type="search" placeholder="Try “excel”, “guitar”, “hindi”…">
+      </label>
+      <label>Category
+        <select id="q-category"><option>All</option></select>
+      </label>
+      <label>Mode
+        <select id="q-mode"><option>All</option><option>Online</option><option>In person</option></select>
+      </label>
+      <label class="check"><input id="q-mutual" type="checkbox"> Mutual matches only</label>
+    </div>
+    <p class="hint">Pick one of <em>your</em> posts below and click <strong>“Find matches”</strong> to see who you can swap with.</p>
+    <div class="board-actions">
+      <button id="btn-samples" class="btn small" type="button">Restore sample posts</button>
+      <button id="btn-clear-samples" class="btn small" type="button">Remove sample posts</button>
+      <button id="btn-clear-mine" class="btn small danger" type="button">Delete all my posts</button>
+      <span id="board-count" class="count" aria-live="polite"></span>
+    </div>
+    <div id="match-results" class="match-results" hidden></div>
+    <ul id="board" class="board"></ul>
+    <p id="empty-state" class="empty" hidden>No posts match. Try clearing the filters — or be the first to post!</p>
+  </section>
+
+  <section class="panel how">
+    <h2>How it works</h2>
+    <ol>
+      <li><strong>Post</strong> one skill you can teach and one you want to learn.</li>
+      <li><strong>Browse</strong> the board — filter by category, mode, or search.</li>
+      <li><strong>Match:</strong> a <span class="badge mutual">Mutual match</span> means you can teach each other. A one-way result means they can teach you (you can still reach out).</li>
+      <li><strong>Connect</strong> using the contact detail on the post. SkillSwap never sees your messages.</li>
+    </ol>
+  </section>
+
+  <footer>
+    <p>Built for the <a href="https://peninsula-innovation-hackathon.devpost.com/">Peninsula Innovation Hackathon</a> by Mohd Raja.
+    Open source (MIT) — <a href="https://github.com/devilking7x/skillswap">github.com/devilking7x/skillswap</a>.
+    Sample posts are labelled “Sample” and are not real people.</p>
+  </footer>
+</main>
+
+<script src="logic.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
