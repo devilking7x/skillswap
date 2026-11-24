@@ -1,0 +1,16 @@
+import { chromium } from "playwright";
+const browser = await chromium.launch();
+const page = await browser.newPage();
+const errors = [];
+page.on("pageerror", (e) => errors.push(String(e)));
+page.on("console", (m) => { if (m.type() === "error") errors.push(m.text()); });
+await page.goto("https://devilking7x.github.io/skillswap/", { waitUntil: "networkidle" });
+await page.waitForSelector(".card");
+const cards = await page.$$(".card");
+const title = await page.title();
+console.log("title:", title, "| sample cards:", cards.length);
+await page.fill("#q", "guitar");
+await page.waitForTimeout(100);
+console.log("search 'guitar' cards:", (await page.$$(".card")).length);
+console.log("js errors:", errors.length ? errors.join(" | ") : "none");
+await browser.close();
